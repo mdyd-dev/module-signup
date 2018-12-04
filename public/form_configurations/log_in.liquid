@@ -1,0 +1,36 @@
+---
+name: log_in
+configuration:
+  email:
+    presence: true
+  password:
+    presence: true
+resource: Session
+authorization_policies:
+return_to: '/'
+default_payload: "{}"
+---
+{% include 'modules/utils/public/views/partials/utils' %}
+
+{% capture return_to_param %}{% if params.return_to %}?return_to={{ params.return_to }}{% else %}{% endif %}{% endcapture %}
+{% capture new_password_url %}/password/new{{ return_to_param }}{% endcapture %}
+{% capture new_user_url %}/sign-up/choose-role{{ return_to_param }}{% endcapture %}
+{% form html-class: 'container' %}
+
+  {% include 'forms/shared/errors-notification' %}
+
+  {% include input with f.email, type: "text" %}
+  {% include input with f.password, type: 'password' %}
+
+  <div class="row mb-4">
+    {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', data-disable-with: 'Logging in...' %}
+  </div>
+
+  <div class="row">
+    <p class="text-muted"><small>Forgot password? <a href="{{ new_password_url }}">Reset your password</a></small></p>
+  </div>
+
+  <div class="row">
+    <p class="text-muted"><small>New user? <a href="{{ new_user_url }}">Create new account</a></small></p>
+  </div>
+{% endform %}

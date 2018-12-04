@@ -1,0 +1,41 @@
+---
+name: user_form
+resource: User
+redirect_to: "/log-in"
+flash_notice: "You've sign-up successfuly, you can now log in."
+configuration:
+  email:
+    validation:
+      confirmation: true
+  email_confirmation:
+    property_options:
+      virtual: true
+  first_name:
+    validation:
+      presence: true
+  last_name:
+    validation:
+      presence: true
+  password:
+    validation:
+      presence: true
+  profiles:
+    default:
+      validation:
+        presence: false
+email_notifications:
+default_payload: ''
+---
+{% form html-novalidate: false, html-class: 'container', html-data-lawyer-signup-form:true %}
+  {% include 'forms/shared/errors-notification' %}
+  {% include 'modules/utils/public/views/partials/utils' %}
+
+  {% include input with f.first_name, type: "text" %}
+  {% include input with f.last_name, type: "text" %}
+  {% include input with f.email, type: 'email' %}
+  {% include input with f.email_confirmation, type: 'email' %}
+  {% include input with f.password, type: 'password' %}
+
+  {% include submit_tag with "Sign Up", class: "btn btn-primary btn-lg" %}
+
+{% endform %}
