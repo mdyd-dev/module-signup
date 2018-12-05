@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" data-instance-id="{{ platform_context.instance_id }}">
+<head>
+  {% include 'modules/signup/public/views/layouts/application/stylesheets' %}
+  {% yield 'head_content' %}
+</head>
+
+<body class="signup {% if is_logged_in %}logged-in{% endif %}">
+  <main>
+    {{ content_for_layout }}
+  </main>
+
+  {% include 'modules/signup/public/views/layouts/application/javascripts' %}
+</body>
+</html>
