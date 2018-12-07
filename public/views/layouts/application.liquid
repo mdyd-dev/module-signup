@@ -6,10 +6,14 @@
 </head>
 
 <body class="signup {% if is_logged_in %}logged-in{% endif %}">
-  <main>
+  {% include 'layouts/header' %}
+  
+  <div class="main">
     {{ content_for_layout }}
-  </main>
+  </div>
+  {% include 'layouts/footer' %}
 
   {% include 'modules/signup/public/views/layouts/application/javascripts' %}
 </body>
 </html>
+

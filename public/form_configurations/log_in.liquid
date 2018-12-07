@@ -15,10 +15,14 @@ default_payload: "{}"
 {% capture new_password_url %}/password/new{{ return_to_param }}{% endcapture %}
 
 {% form %}
+  {% if params.page_id != blank %}
+    <input type="hidden" name="page_id" value="{{ params.page_id }}">
+  {% endif %}
   {% include form_errors %}
 
   {% include input with f.email, type: "text" %}
   {% include input with f.password, type: 'password' %}
+
   {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', data-disable-with: 'Logging in...' %}
   
   <p>
