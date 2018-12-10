@@ -23,7 +23,7 @@ default_payload: "{}"
   {% include input with f.email, type: "text" %}
   {% include input with f.password, type: 'password' %}
 
-  {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', data-disable-with: 'Logging in...' %}
+  {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
   
   <p>
     <small>Forgot password? <a href="{{ new_password_url }}">Reset your password</a></small>
