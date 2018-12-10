@@ -12,13 +12,12 @@ default_payload: "{}"
 ---
 {% include 'modules/utils/public/views/partials/utils' %}
 
-{% capture new_password_url %}/password/new{{ return_to_param }}{% endcapture %}
-
 {% form %}
   {% if params.page_id != blank %}
     <input type="hidden" name="page_id" value="{{ params.page_id }}">
   {% endif %}
   {% include form_errors %}
+  {% include flash_messages %}
 
   {% include input with f.email, type: "text" %}
   {% include input with f.password, type: 'password' %}
@@ -26,7 +25,7 @@ default_payload: "{}"
   {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
   
   <p>
-    <small>Forgot password? <a href="{{ new_password_url }}">Reset your password</a></small>
+    <small>Forgot password? <a href="/recover-password">Reset your password</a></small>
     <small>New user? <a href="/sign-up">Create new account</a></small>
   </p>
 {% endform %}
