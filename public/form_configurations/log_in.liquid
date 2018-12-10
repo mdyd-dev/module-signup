@@ -11,8 +11,11 @@ return_to: '/'
 default_payload: "{}"
 ---
 {% include 'modules/utils/public/views/partials/utils' %}
-
+{% if form.errors.password != blank %}
+{% assign password_error = "Invalid email or password" %}
+{% endif %}
 {% form %}
+  {% assign form.errors.password = "error" %}
   {% if params.page_id != blank %}
     <input type="hidden" name="page_id" value="{{ params.page_id }}">
   {% endif %}
@@ -20,7 +23,7 @@ default_payload: "{}"
   {% include flash_messages %}
 
   {% include input with f.email, type: "text" %}
-  {% include input with f.password, type: 'password' %}
+  {% include input with f.password, type: 'password', error: password_error %}
 
   {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
   
