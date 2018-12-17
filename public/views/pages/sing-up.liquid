@@ -1,7 +1,7 @@
 ---
 slug: sign-up
 format: html
-layout_name: modules/signup/public/views/layouts/application
+layout_name: modules/signup/layouts/application
 name: User Signup
 ---
 
@@ -18,9 +18,8 @@ Register Now
         <h1>New User</h1>
         {% include_form "modules/signup/user_form", resource_type: "User" %}
       {% else %}
-        {% include 'modules/signup/public/views/partials/already_signed_up', user: u %}
+        {% include 'modules/signup/already_signed_up', user: u %}
       {% endif %}
     </div>
   </div>
 </div>
-

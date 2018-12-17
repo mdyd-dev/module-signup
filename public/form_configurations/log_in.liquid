@@ -10,7 +10,7 @@ authorization_policies:
 return_to: '/'
 default_payload: "{}"
 ---
-{% include 'modules/utils/public/views/partials/utils' %}
+{% include 'modules/utils/utils' %}
 {% if form.errors.password != blank %}
 {% assign password_error = "Invalid email or password" %}
 {% endif %}

@@ -16,7 +16,7 @@ configuration:
 default_payload: ''
 ---
 {% form html-novalidate: false, html-class: 'container', html-data-lawyer-signup-form:true %}
-  {% include 'modules/utils/public/views/partials/utils' %}
+  {% include 'modules/utils/utils' %}
   {% include forms_errors %}
 
   {% include input with f.first_name, type: "text" %}
