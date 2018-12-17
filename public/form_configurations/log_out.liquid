@@ -1,0 +1,16 @@
+---
+name: log_out
+resource: Session
+resource_owner: anyone
+redirect_to: "/"
+flash_notice: "You've successfuly logged out"
+configuration:
+default_payload: ''
+callback_actions: |-
+  {% execute_query 'log_out' %}
+ 
+---
+{% include 'modules/utils/utils' %}
+{% form method: "delete" %}
+  {% include submit_tag with "Log Out", class: "btn btn-info ml-auto mr-5" %}
+{% endform %}
