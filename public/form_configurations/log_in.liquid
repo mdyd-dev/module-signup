@@ -11,9 +11,12 @@ return_to: '/'
 default_payload: "{}"
 ---
 {% include 'modules/utils/utils' %}
+
+{% comment %}Temp have for Device problem {% endcomment %}
 {% if form.errors.password != blank %}
-{% assign password_error = "Invalid email or password" %}
+  {% assign password_error = "Invalid email or password" %}
 {% endif %}
+
 {% form %}
   {% assign form.errors.password = "error" %}
   {% if params.page_id != blank %}
@@ -26,7 +29,7 @@ default_payload: "{}"
   {% include input with f.password, type: 'password', error: password_error %}
 
   {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
-  
+
   <p>
     <small>Forgot password? <a href="/recover-password">Reset your password</a></small>
     <small>New user? <a href="/sign-up">Create new account</a></small>
