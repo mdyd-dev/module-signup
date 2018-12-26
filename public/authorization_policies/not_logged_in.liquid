@@ -5,5 +5,5 @@ redirect_to: >
   {{ redirect_to | strip }}
 flash_alert: 'You are already logged in.'
 ---
-{%- query_graph 'current_user', result_name: g -%}
+{%- query_graph 'modules/signup/current_user', result_name: g -%}
 {% if g.current_user.id == blank %}true{% endif %}

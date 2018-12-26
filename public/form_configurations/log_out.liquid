@@ -8,9 +8,7 @@ configuration:
 default_payload: ''
 callback_actions: |-
   {% execute_query 'log_out' %}
- 
 ---
-{% include 'modules/utils/utils' %}
 {% form method: "delete" %}
-  {% include submit_tag with "Log Out", class: "btn btn-info ml-auto mr-5" %}
+  {% include "modules/utils/utils/inputs/submit_tag" with "Log Out", class: "btn btn-info ml-auto mr-5" %}
 {% endform %}

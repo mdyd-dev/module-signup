@@ -8,5 +8,5 @@ redirect_to: >
   {% endif %}
 flash_alert: 'Please log in before trying to access private section.'
 ---
-{%- query_graph 'current_user', result_name: g -%}
+{%- query_graph 'modules/signup/current_user', result_name: g -%}
 {% if g.current_user.id != blank %}true{% endif %}

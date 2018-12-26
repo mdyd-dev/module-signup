@@ -22,16 +22,18 @@ configuration:
 email_notifications:
 default_payload: ''
 ---
+{% parse_json "utils" %}{%- include 'modules/utils/init' -%}{% endparse_json %}
+
 {% form html-novalidate: false, html-class: 'container', html-data-lawyer-signup-form:true %}
-  {% include 'modules/utils/utils' %}
-  {% include form_errors %}
+  {% assign f = form_builder.fields %}
 
-  {% include input with f.first_name, type: "text" %}
-  {% include input with f.last_name, type: "text" %}
-  {% include input with f.email, type: 'email' %}
-  {% include input with f.email_confirmation, type: 'email' %}
-  {% include input with f.password, type: 'password' %}
+  {% include utils.input with f.first_name, type: "text" %}
+  {% include utils.input with f.last_name, type: "text" %}
+  {% include utils.input with f.email, type: 'email' %}
+  {% include utils.input with f.email_confirmation, type: 'email' %}
+  {% include utils.input with f.password, type: 'password' %}
 
-  {% include submit_tag with "Sign Up", class: "btn btn-primary btn-lg" %}
+  {% include utils.form_errors %}
+  {% include utils.submit_tag with "Sign Up", class: "btn btn-primary btn-lg" %}
 
 {% endform %}

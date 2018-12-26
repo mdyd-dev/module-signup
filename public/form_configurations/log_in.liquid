@@ -6,11 +6,13 @@ configuration:
   password:
     presence: true
 resource: Session
-authorization_policies:
+authorization_policies: ""
 return_to: '/'
 default_payload: "{}"
 ---
-{% include 'modules/utils/utils' %}
+{% parse_json "utils" %}
+  {%- include 'modules/utils/init' -%}
+{% endparse_json %}
 
 {% comment %}Temp have for Device problem {% endcomment %}
 {% if form.errors.password != blank %}
@@ -18,17 +20,11 @@ default_payload: "{}"
 {% endif %}
 
 {% form %}
-  {% assign form.errors.password = "error" %}
-  {% if params.page_id != blank %}
-    <input type="hidden" name="page_id" value="{{ params.page_id }}">
-  {% endif %}
-  {% include form_errors %}
-  {% include flash_messages %}
-
-  {% include input with f.email, type: "text" %}
-  {% include input with f.password, type: 'password', error: password_error %}
-
-  {% include submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
+  {% include utils.form_errors %}
+  {% include utils.flash_messages %}
+  {% include utils.input with form_builder.fields.email, type: "text" %}
+  {% include utils.input with form_builder.fields.password, type: 'password', error: password_error %}
+  {% include utils.submit_tag with 'Log In', class: 'btn btn-primary btn-lg', disable_with: 'Logging in...' %}
 
   <p>
     <small>Forgot password? <a href="/recover-password">Reset your password</a></small>
